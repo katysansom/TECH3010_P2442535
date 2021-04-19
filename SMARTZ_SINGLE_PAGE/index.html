@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Smartz Single Page</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+  </head>
+  <body>
+
+
+    <!-- NOTE: Main welcome area -->
+
+
+
+    <section class="home">
+    <div class="container">
+      <div id="home" class="flex-center flex-column">
+        <h1>Welcome to SMARTZ</h1>
+        <a class="btn" href="#general_knowledge_game">General Knowledge</a>
+        <a class="btn" href="#maths_game">Maths</a>
+        <a class="btn" href="#english_game">English</a>
+        <a class="btn" href="#leaderboard">High Scores</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- NOTE: General Knowledge Game Area -->
+
+
+
+  <section class="general_knowledge_game" id="general_knowledge_game">
+    <div class="container ">
+      <div id="loader"></div> <!-- NOTE: this will bring up a spinning loader whilst all of the questions are loading so it doesnt glitch for the users -->
+      <div id="game" class="justify-center flex-column hidden">
+        <h1>General Knowledge Quiz</h1>
+        <div id="hud"> <!-- NOTE: heads up display that will give info about the game as your playing it, like question number and score -->
+          <div id="hud-item">
+            <p id="progressText" class="hud-prefix">
+              Question
+            </p>
+            <div id="progressBar"> <!-- NOTE: displays a progress bar so it fills up as you go through the quiz -->
+              <div id="progressBarFull"></div>
+            </div>
+          </div>
+          <div id="hud-item">
+            <p class="hud-prefix">
+              Score
+            </p>
+            <h1 class="hud-main-text" id="score">
+              0
+            </h1>
+          </div>
+        </div>
+        <h2 id="question"></h2>
+        <div class="choice-container">
+          <p class="choice-prefix">A</p>
+          <p class="choice-text" data-number="1"></p>
+        </div>
+        <div class="choice-container">
+          <p class="choice-prefix">B</p>
+          <p class="choice-text" data-number="2"></p>
+        </div>
+        <div class="choice-container">
+          <p class="choice-prefix">C</p>
+          <p class="choice-text" data-number="3"></p>
+        </div>
+        <div class="choice-container">
+          <p class="choice-prefix">D</p>
+          <p class="choice-text" data-number="4"></p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container" id="general_knowledge_game_end">
+      <div id="end" class="flex-center flex-column">
+        <h1>General Knowledge End</h1>
+        <button onClick="window.location.reload();"><i class="fas fa-sync-alt"></i></button>
+        <h1 id="finalScore"></h1>
+        <form id="generalKnowledgeEnd">
+          <!-- NOTE: user can submit their info and save their score if they want to -->
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="username"
+          />
+          <button
+            type="submit"
+            class="btn"
+            id="saveScoreBtn"
+            onclick="saveHighScore(event)"
+            disabled
+          >
+            <!-- NOTE: will stop user from being able to click this button until told otherwise by the end.js script -->
+            Save
+          </button>
+        </form>
+        <a class="btn" href="#general_knowledge_game">Play Again</a>
+        <a class="btn" href="#home">Go Home</a>
+        <a class="btn" href="#leaderboard">Leaderboard</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- NOTE: Maths Game Area -->
+    <section class="maths_game" id="maths_game">
+      <div class="container maths">
+        <div id="loaderM"></div> <!-- NOTE: this will bring up a spinning loader whilst all of the questions are loading so it doesnt glitch for the users -->
+        <div id="gameM" class="justify-center flex-column hidden">
+          <h1>Maths Quiz</h1>
+          <div id="hud"> <!-- NOTE: heads up display that will give info about the game as your playing it, like question number and score -->
+            <div id="hud-itemM">
+              <p id="progressTextM" class="hud-prefixM">
+                Question
+              </p>
+              <div id="progressBarM"> <!-- NOTE: displays a progress bar so it fills up as you go through the quiz -->
+                <div id="progressBarFullM"></div>
+              </div>
+            </div>
+            <div id="hud-itemM">
+              <p class="hud-prefix">
+                Score
+              </p>
+              <h1 class="hud-main-text" id="scoreM">
+                0
+              </h1>
+            </div>
+          </div>
+          <h2 id="questionM"></h2>
+          <div class="choice-container">
+            <p class="choice-prefix">A</p>
+            <p class="choice-textM" data-number="1"></p>
+          </div>
+          <div class="choice-container">
+            <p class="choice-prefix">B</p>
+            <p class="choice-textM" data-number="2"></p>
+          </div>
+          <div class="choice-container">
+            <p class="choice-prefix">C</p>
+            <p class="choice-textM" data-number="3"></p>
+          </div>
+          <div class="choice-container">
+            <p class="choice-prefix">D</p>
+            <p class="choice-textM" data-number="4"></p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container" id="maths_end">
+        <div id="endM" class="flex-center flex-column">
+          <h1>Maths End</h1>
+          <button onClick="window.location.reload();"><i class="fas fa-sync-alt"></i></button>
+          <h1 id="finalScoreM"></h1>
+          <form id="mathsEnd">
+            <!-- NOTE: user can submit their info and save their score if they want to -->
+            <input
+              type="textM"
+              name="usernameM"
+              id="usernameM"
+              placeholder="username"
+            />
+            <button
+              type="submitM"
+              class="btn"
+              id="saveScoreBtnM"
+              onclick="saveHighScoreM(event)"
+              disabled
+            >
+              <!-- NOTE: will stop user from being able to click this button until told otherwise by the end.js script -->
+              Save
+            </button>
+          </form>
+          <a class="btn" href="#general_knowledge_game">Play Again</a>
+          <a class="btn" href="#home">Go Home</a>
+          <a class="btn" href="#leaderboard">Leaderboard</a>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- NOTE: English Game Area -->
+      <section class="english_game" id="english_game">
+        <div class="container english">
+          <div id="loaderE"></div> <!-- NOTE: this will bring up a spinning loader whilst all of the questions are loading so it doesnt glitch for the users -->
+          <div id="gameE" class="justify-center flex-column hidden">
+            <h1>English Quiz</h1>
+            <div id="hud"> <!-- NOTE: heads up display that will give info about the game as your playing it, like question number and score -->
+              <div id="hud-itemE">
+                <p id="progressTextE" class="hud-prefix">
+                  Question
+                </p>
+                <div id="progressBar"> <!-- NOTE: displays a progress bar so it fills up as you go through the quiz -->
+                  <div id="progressBarFullE"></div>
+                </div>
+              </div>
+              <div id="hud-itemE">
+                <p class="hud-prefix">
+                  Score
+                </p>
+                <h1 class="hud-main-text" id="scoreE">
+                  0
+                </h1>
+              </div>
+            </div>
+            <h2 id="questionE"></h2>
+            <div class="choice-container">
+              <p class="choice-prefix">A</p>
+              <p class="choice-textE" data-number="1"></p>
+            </div>
+            <div class="choice-container">
+              <p class="choice-prefix">B</p>
+              <p class="choice-textE" data-number="2"></p>
+            </div>
+            <div class="choice-container">
+              <p class="choice-prefix">C</p>
+              <p class="choice-textE" data-number="3"></p>
+            </div>
+            <div class="choice-container">
+              <p class="choice-prefix">D</p>
+              <p class="choice-textE" data-number="4"></p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="container" id="english_end">
+          <div id="endE" class="flex-center flex-column">
+            <h1>English End</h1>
+            <button onClick="window.location.reload();"><i class="fas fa-sync-alt"></i></button>
+            <h1 id="finalScoreE"></h1>
+            <form id="englishEnd">
+              <!-- NOTE: user can submit their info and save their score if they want to -->
+              <input
+                type="textE"
+                name="usernameE"
+                id="usernameE"
+                placeholder="username"
+              />
+              <button
+                type="submitE"
+                class="btn"
+                id="saveScoreBtnE"
+                onclick="saveHighScoreE(event)"
+                disabled
+              >
+                <!-- NOTE: will stop user from being able to click this button until told otherwise by the end.js script -->
+                Save
+              </button>
+            </form>
+            <a class="btn" href="#general_knowledge_game">Play Again</a>
+            <a class="btn" href="#home">Go Home</a>
+            <a class="btn" href="#leaderboard">Leaderboard</a>
+          </div>
+        </div>
+      </section>
+
+
+
+<!-- NOTE: Leaderboard Area -->
+<section class="leaderboard" id="leaderboard">
+  <div class="container">
+  <div id="highScoresGKL" class="flex-center flex-column">
+    <h1 id="finalScoreGKL">General Knowledge  <br>High Scores</h1>
+    <ul id="highScoresListGK">
+    </ul>
+    <a class="btn" href="#">Maths Leaderboard</a>
+    <a class="btn" href="#">English Leaderboard</a>
+    <a class="btn" href="#home">Go Home</a>
+  </div>
+</div>
+    <div class="container">
+    <div id="highScoresML" class="flex-center flex-column">
+      <h1 id="finalScoreML">Maths  <br>High Scores</h1>
+      <ul id="highScoresListM">
+      </ul>
+      <a class="btn" href="#">General Knowledge Leaderboard</a>
+      <a class="btn" href="#">English Leaderboard</a>
+      <a class="btn" href="#home">Go Home</a>
+    </div>
+  </div>
+    <div class="container">
+    <div id="highScoresEL" class="flex-center flex-column">
+      <h1 id="finalScoreEL">English  <br>High Scores</h1>
+      <ul id="highScoresListE">
+      </ul>
+      <a class="btn" href="#">General Knowledge Leaderboard</a>
+      <a class="btn" href="#">Maths Leaderboard</a>
+      <a class="btn" href="#home">Go Home</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- NOTE: All javascript links -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <!-- <script src="https://smartzmultipage-default-rtdb.firebaseio.com/"></script> -->
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+    -->
+<script src="javascript/generalKnowledge.js"></script>
+<script src="javascript\endGeneralKnowledge.js"></script>
+<script src="javascript\leaderboardGeneralKnowledge.js"></script>
+
+<script src="javascript\maths.js"></script>
+<script src="javascript\endMaths.js"></script>
+<script src="javascript\leaderboardMaths.js"></script>
+
+<script src="javascript\english.js"></script>
+<script src="javascript\endEnglish.js"></script>
+<script src="javascript\leaderboardEnglish.js"></script>
+
+
+  </body>
+</html>
